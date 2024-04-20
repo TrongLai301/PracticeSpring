@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="student/create">Create</a>
+<form method="post" th:action="@{/student/search}">
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name">
+
+    <label for="code">code</label>
+    <input type="text" id="code" name="code">
+
+    <label for="idClass">Id class</label>
+    <input type="text" id="idClass" name="idClass">
+    <label for="sort">sort</label>
+    <input type="text" id="sort" name="sort">
+
+    <input type="submit" value="search">
+</form>
+<table>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>date</th>
+        <th>code</th>
+        <th>class</th>
+        <th>action</th>
+    </tr>
+    <tr th:each="student: ${students}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.date}"></td>
+        <td th:text="${student.code}"></td>
+        <td th:text="${student.getAClass().getClassName()}"></td>
+        <td>
+            <a th:href="@{/student/update(id = ${student.id})}">Update</a>
+            <a th:href="@{/student/delete(id = ${student.id})}">Delete</a>
+        </td>
+    </tr>
+
+</table>
+</body>
+</html>

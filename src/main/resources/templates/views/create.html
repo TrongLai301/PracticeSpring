@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+</head>
+<body>
+<h1>Create</h1>
+<a href="student">Back to home</a>
+<form th:action="@{/student/save}" method="post" th:Object="${students}">
+    <label for="name">Name</label>
+    <input type="text" id="name" th:field="*{name}">
+
+    <label for="date">Date</label>
+    <input type="date" id="date" th:field="*{date}">
+
+    <label for="code">Code</label>
+    <input type="text" id="code" th:field="*{code}">
+
+    <label for="class">Class</label>
+    <select id="class" th:field="*{aClass.id}">
+        <option th:each="class : ${clasS}" th:text="${class.getClassName()}" th:value="${class.getId()}"></option>
+    </select>
+
+    <input type="submit" value="Save">
+    <button type="button" >
+        <a>Cancel</a>
+    </button>
+</form>
+</body>
+</html>
